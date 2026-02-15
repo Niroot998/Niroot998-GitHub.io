@@ -3,69 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niroot Portfolio</title>
+    <title>Niroot | Digital Presence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS: ส่วนตกแต่งหน้าตา */
+        :root {
+            --bg-color: #0a0a0c;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --card-bg: #161618;
+            --text-main: #f4f4f5;
+            --text-dim: #a1a1aa;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+        }
+
+        /* ตกแต่งพื้นหลังด้วยแสง Nebula จางๆ */
+        .nebula {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            border: 1px solid #27272a;
+            padding: 3rem 2rem;
+            border-radius: 28px;
             text-align: center;
+            max-width: 450px;
+            width: 85%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            max-width: 400px;
-            width: 90%;
-        }
-        h1 { margin-bottom: 0.5rem; color: #00d2ff; }
-        p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
-        .btn {
-            background: #00d2ff;
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 22px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 800;
+            font-size: 1.8rem;
             color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
-        .btn:hover {
-            background: #3a7bd5;
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: 800;
+            background: linear-gradient(to bottom right, #ffffff 50%, #71717a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1rem;
+            margin: 1rem 0 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #000000;
+            padding: 14px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,210,255,0.4);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+            background: #f4f4f5;
+        }
+
+        .footer-text {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #52525b;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>สวัสดีครับ! 👋</h1>
-        <p>ยินดีต้อนรับเข้าสู่เว็บไซต์ของ <strong>Niroot</strong></p>
-        <p>นี่คือโปรเจกต์แรกที่รันบน GitHub Pages</p>
+    <div class="nebula"></div>
+
+    <div class="portfolio-card">
+        <div class="avatar">N</div>
+        <div class="badge">SYSTEM READY</div>
+        <h1>NIROOT</h1>
+        <p class="subtitle">
+            Exploring the intersection of Python Automation <br>
+            and Modern Web Architecture.
+        </p>
         
-        <button class="btn" onclick="sayHi()">คลิกทักทาย</button>
+        <button class="cta-button" onclick="launchGreeting()">GET IN TOUCH</button>
         
-        <div id="message" style="margin-top: 20px; font-weight: bold; color: #ffcc00;"></div>
+        <p class="footer-text">Powered by GitHub Actions & Pages</p>
     </div>
 
     <script>
-        function sayHi() {
-            const msg = document.getElementById('message');
-            msg.innerHTML = "ยินดีด้วย! คุณเปิดใช้งานเว็บไซต์สำเร็จแล้ว 🚀";
-            console.log("Button clicked!");
+        function launchGreeting() {
+            const btn = document.querySelector('.cta-button');
+            btn.innerHTML = "SYSTEM DEPLOYED ✅";
+            btn.style.background = "#22c55e";
+            btn.style.color = "#fff";
+            console.log("Welcome to Niroot's digital space.");
         }
     </script>
 </body>
