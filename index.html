@@ -1,155 +1,446 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Niroot | Digital Presence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>โปรแกรมคำนวณต้นทุนรู้ผลกำไร</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0a0a0c;
-            --accent-blue: #3b82f6;
-            --accent-cyan: #06b6d4;
-            --card-bg: #161618;
-            --text-main: #f4f4f5;
-            --text-dim: #a1a1aa;
-        }
-
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Kanit', sans-serif;
+            background-color: #f0fdf4;
         }
 
-        /* ตกแต่งพื้นหลังด้วยแสง Nebula จางๆ */
-        .nebula {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
-            z-index: -1;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .portfolio-card {
-            background: var(--card-bg);
-            border: 1px solid #27272a;
-            padding: 3rem 2rem;
-            border-radius: 28px;
-            text-align: center;
-            max-width: 450px;
-            width: 85%;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
-            border-radius: 22px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: white;
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent-blue);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(59, 130, 246, 0.2);
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            margin: 0;
-            font-weight: 800;
-            background: linear-gradient(to bottom right, #ffffff 50%, #71717a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            color: var(--text-dim);
-            font-size: 1rem;
-            margin: 1rem 0 2rem;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            background: #ffffff;
-            color: #000000;
-            padding: 14px 32px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-            background: #f4f4f5;
-        }
-
-        .footer-text {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: #52525b;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .card-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
-<body>
 
-    <div class="nebula"></div>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-green-800">โปรแกรมคำนวณทุนรู้ผลกำไร</h1>
+            <p class="text-green-600 mt-2 text-sm">ฉบับชาวนา 4.0 - กรอกง่าย รู้ผลทันที</p>
+        </div>
 
-    <div class="portfolio-card">
-        <div class="avatar">N</div>
-        <div class="badge">SYSTEM READY</div>
-        <h1>NIROOT</h1>
-        <p class="subtitle">
-            Exploring the intersection of Python Automation <br>
-            and Modern Web Architecture.
-        </p>
-        
-        <button class="cta-button" onclick="launchGreeting()">GET IN TOUCH</button>
-        
-        <p class="footer-text">Powered by GitHub Actions & Pages</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Left Column: Input Form -->
+            <form id="farmForm" class="bg-white rounded-2xl p-6 card-shadow border border-green-50" onsubmit="event.preventDefault();">
+                <div class="flex items-center gap-2 mb-6 text-green-700 font-medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>1. กรอกข้อมูลแปลงนา</span>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Area Size -->
+                    <div>
+                        <label for="area" class="block text-sm text-gray-600 mb-1">จำนวนพื้นที่นา (ไร่)</label>
+                        <div class="relative">
+                            <input type="number" id="area" min="0" step="0.1" inputmode="decimal" value="0"
+                                class="w-full bg-green-50/50 border border-green-100 rounded-xl py-3 px-4 text-right pr-12 focus:outline-none focus:ring-2 focus:ring-green-400 font-bold text-lg"
+                                oninput="calculate()" aria-label="จำนวนพื้นที่นา (ไร่)">
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">ไร่</span>
+                        </div>
+                    </div>
+
+                    <!-- Rice Variety -->
+                    <div>
+                        <label for="variety" class="block text-sm text-gray-600 mb-1">พันธุ์ข้าวที่ปลูก</label>
+                        <select id="variety"
+                            class="w-full bg-white border border-gray-200 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-green-400"
+                            onchange="calculate()" aria-label="พันธุ์ข้าวที่ปลูก">
+                            <!-- value = avg kg per rai -->
+                            <option value="803">กข79 (เฉลี่ย 803 กก./ไร่)</option>
+                            <option value="750">หอมมะลิ (เฉลี่ย 750 กก./ไร่)</option>
+                            <option value="900">กข43 (เฉลี่ย 900 กก./ไร่)</option>
+                        </select>
+                    </div>
+
+                    <!-- Total Cost -->
+                    <div>
+                        <label for="totalCost" class="block text-sm text-gray-600 mb-1">ต้นทุนรวมจนถึงวันเกี่ยว (บาท)</label>
+                        <div class="relative">
+                            <input type="number" id="totalCost" min="0" step="1" inputmode="numeric" value="0"
+                                class="w-full bg-red-50/50 border border-red-100 rounded-xl py-3 px-4 text-right pr-12 focus:outline-none focus:ring-2 focus:ring-red-400 font-bold text-lg text-red-600"
+                                oninput="calculate()" aria-label="ต้นทุนรวมจนถึงวันเกี่ยว (บาท)">
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">บาท</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 mt-1">*รวมค่าปุ๋ย ค่ายา ค่าแรง ค่ารถเกี่ยว</p>
+                    </div>
+
+                    <!-- Yield -->
+                    <div>
+                        <label for="yield" class="block text-sm text-gray-600 mb-1">ผลผลิตที่เก็บได้ (กิโลกรัม)</label>
+                        <div class="relative">
+                            <input type="number" id="yield" min="0" step="0.1" inputmode="decimal" value="0"
+                                class="w-full bg-blue-50/50 border border-blue-100 rounded-xl py-3 px-4 text-right pr-12 focus:outline-none focus:ring-2 focus:ring-blue-400 font-bold text-lg text-blue-800"
+                                oninput="calculate()" aria-describedby="yieldHelp" aria-label="ผลผลิตที่เก็บได้ (กิโลกรัม)">
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">กก.</span>
+                        </div>
+                        <p id="yieldHelp" class="text-[10px] text-blue-500 mt-1">ⓘ ค่าเฉลี่ยพันธุ์นี้ควรได้ประมาณ: <span
+                                id="expectedYield">0</span> กก. <span id="yieldNote" class="ml-2 text-xs text-gray-500"></span></p>
+                    </div>
+
+                    <!-- Sale Price -->
+                    <div>
+                        <label for="pricePerKg" class="block text-sm text-gray-600 mb-1">ราคาขายโรงสี (บาท/กก.)</label>
+                        <div class="relative">
+                            <input type="number" id="pricePerKg" step="0.01" min="0" inputmode="decimal" value="0"
+                                class="w-full bg-yellow-50/50 border border-yellow-100 rounded-xl py-3 px-4 text-right pr-20 focus:outline-none focus:ring-2 focus:ring-yellow-400 font-bold text-lg"
+                                oninput="calculate()" aria-label="ราคาขายโรงสี (บาทต่อกิโลกรัม)">
+                            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm">บาท/กก.</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Right Column: Results -->
+            <div class="space-y-4">
+                <!-- Main Profit Card -->
+                <div id="profitCard"
+                    class="bg-green-600 rounded-2xl p-8 text-white text-center shadow-lg transition-colors duration-300"
+                    role="region" aria-live="polite" aria-atomic="true">
+                    <p class="text-sm opacity-90 mb-1">กำไร (ขาดทุน) สุทธิ</p>
+                    <h2 class="text-5xl font-bold mb-4"><span id="netProfitCurrency">฿</span><span id="netProfit"
+                            class="ml-1">0.00</span></h2>
+                    <div id="statusBadge"
+                        class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md rounded-full px-4 py-2 text-sm">
+                        <span id="statusIcon" aria-hidden="true">✨</span>
+                        <span id="statusText">ยินดีด้วย คุณได้กำไร!</span>
+                    </div>
+                </div>
+
+                <!-- Analysis Details -->
+                <div class="bg-white rounded-2xl p-6 card-shadow border border-gray-100" role="region">
+                    <div class="flex items-center gap-2 mb-4 text-gray-700 font-medium">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                            aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3-2a1 1 0 011 1v5a1 1 0 11-2 0v-5a1 1 0 011-1zm-3 2a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>วิเคราะห์ต้นทุนและผลตอบแทน</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Profit per Rai -->
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-width="2" />
+                                    </svg>
+                                </div>
+                                <div class="text-xs text-gray-600">กำไร/ขาดทุน เฉลี่ย<br><span
+                                        class="font-medium text-gray-900">ต่อไร่</span></div>
+                            </div>
+                            <div class="text-right">
+                                <span id="profitPerRai" class="text-xl font-bold text-green-600">0.00</span>
+                                <span class="text-xs text-gray-400 ml-1">บาท</span>
+                            </div>
+                        </div>
+
+                        <!-- Cost per Kg -->
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center text-red-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            stroke-width="2" />
+                                    </svg>
+                                </div>
+                                <div class="text-xs text-gray-600">ต้นทุนการผลิต<br><span
+                                        class="font-medium text-gray-900">ต่อกิโลกรัม</span></div>
+                            </div>
+                            <div class="text-right">
+                                <span id="costPerKg" class="text-xl font-bold text-red-600">0.00</span>
+                                <span class="text-xs text-gray-400 ml-1">บาท</span>
+                            </div>
+                        </div>
+
+                        <!-- Margin per Kg -->
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div
+                                    class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                            stroke-width="2" />
+                                    </svg>
+                                </div>
+                                <div class="text-xs text-gray-600">กำไรส่วนต่าง<br><span
+                                        class="font-medium text-gray-900">ต่อกิโลกรัม</span></div>
+                            </div>
+                            <div class="text-right">
+                                <span id="marginPerKg" class="text-xl font-bold text-blue-600">0.00</span>
+                                <span class="text-xs text-gray-400 ml-1">บาท</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggestions + Actions -->
+                <div class="bg-orange-50 border border-orange-100 rounded-2xl p-5">
+                    <div class="flex items-start gap-3">
+                        <div class="text-orange-500 mt-1" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="text-sm text-orange-800 flex-1">
+                            <p class="font-bold mb-2">ข้อแนะนำ:</p>
+                            <ul class="list-disc ml-4 space-y-1 opacity-90">
+                                <li id="tip1">ต้นทุนต่อ กก. สูงกว่าราคาขาย จะทำให้ขาดทุน</li>
+                                <li>ลองปรับลดต้นทุนปุ๋ย/ยา หรือเพิ่มผลผลิตต่อไร่ให้กำไรมากขึ้น</li>
+                                <li id="tip3">ข้อมูลผลผลิตพันธุ์ กข79 เฉลี่ยทั่วไทยอยู่ที่ 803 กก./ไร่</li>
+                            </ul>
+
+                            <div class="mt-4 flex gap-2">
+                                <button id="copyBtn" class="px-3 py-2 bg-green-600 text-white rounded-xl text-sm"
+                                    onclick="copyResults()" type="button">คัดลอกผล</button>
+                                <button id="downloadBtn" class="px-3 py-2 bg-blue-600 text-white rounded-xl text-sm"
+                                    onclick="downloadCSV()" type="button">ดาวน์โหลด CSV</button>
+                                <button id="resetBtn" class="px-3 py-2 bg-gray-200 text-gray-700 rounded-xl text-sm"
+                                    onclick="resetForm()" type="button">รีเซ็ต</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 text-center text-gray-400 text-[10px] leading-relaxed">
+            <p>© 2026 พัฒนาโดย:[บริษัท บีแอล จำกัด]</p>
+            <p>แจกฟรีเพื่อการศึกษาและใช้งานภาคสนาม (Version Web App)</p>
+            <p>ข้อมูลพันธุ์ข้าวอ้างอิงจาก กรมการข้าว และสมาคม��ู้ส่งออกข้าวไทย</p>
+        </div>
     </div>
 
     <script>
-        function launchGreeting() {
-            const btn = document.querySelector('.cta-button');
-            btn.innerHTML = "SYSTEM DEPLOYED ✅";
-            btn.style.background = "#22c55e";
-            btn.style.color = "#fff";
-            console.log("Welcome to Niroot's digital space.");
+        /* Improvements made:
+           - Thai number formatting using Intl where appropriate
+           - Input validation (min attributes), better steps
+           - Use expected yield as fallback for calculations when user hasn't provided yield
+           - Accessibility: aria-live, labels, roles
+           - Copy results & download CSV buttons
+           - Clearer formatting and prevention of negative values
+        */
+
+        const nf = new Intl.NumberFormat('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const nfNoDecimals = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 0 });
+        const cf = new Intl.NumberFormat('th-TH', { style: 'currency', currency: 'THB', minimumFractionDigits: 2 });
+
+        function formatNumber(num) {
+            if (!isFinite(num)) return '0.00';
+            return nf.format(num);
         }
+
+        function formatNumberNoDecimals(num) {
+            if (!isFinite(num)) return '0';
+            return nfNoDecimals.format(num);
+        }
+
+        function formatCurrency(num) {
+            if (!isFinite(num)) return '฿0.00';
+            // Use currency format but we want the currency symbol separate in markup; return full as fallback
+            return cf.format(num);
+        }
+
+        function calculate() {
+            // Inputs
+            let area = parseFloat(document.getElementById('area').value) || 0;
+            if (area < 0) area = 0;
+            const avgVarietyYield = parseFloat(document.getElementById('variety').value) || 0; // kg per rai
+            const totalCost = Math.max(0, parseFloat(document.getElementById('totalCost').value) || 0);
+            const yieldInput = parseFloat(document.getElementById('yield').value);
+            const rawYield = (isNaN(yieldInput) ? 0 : Math.max(0, yieldInput));
+            const pricePerKg = Math.max(0, parseFloat(document.getElementById('pricePerKg').value) || 0);
+
+            // Variety Name Mapping (for messages)
+            const varietySelect = document.getElementById('variety');
+            const varietyName = varietySelect.options[varietySelect.selectedIndex].text.split(' ')[0];
+
+            // Expected yield (area * avg per rai)
+            const expectedYield = area * avgVarietyYield;
+
+            // If user did not provide yield (0), use expectedYield as fallback for calculations but indicate this to user
+            let usedYield = rawYield;
+            const yieldNoteEl = document.getElementById('yieldNote');
+            if (rawYield === 0) {
+                usedYield = expectedYield;
+                if (expectedYield === 0) {
+                    yieldNoteEl.textContent = ''; // nothing to show
+                } else {
+                    yieldNoteEl.textContent = ` (ใช้ค่าเฉลี่ย: ${formatNumberNoDecimals(expectedYield)} กก.)`;
+                }
+            } else {
+                yieldNoteEl.textContent = '';
+            }
+
+            // Calculations
+            const revenue = usedYield * pricePerKg;
+            const netProfit = revenue - totalCost;
+            const profitPerRai = area > 0 ? netProfit / area : 0;
+            const costPerKg = usedYield > 0 ? totalCost / usedYield : 0;
+            const marginPerKg = pricePerKg - costPerKg;
+
+            // Update UI
+            const netProfitEl = document.getElementById('netProfit');
+            const netProfitCurrencyEl = document.getElementById('netProfitCurrency');
+            // Show currency symbol separately (฿) and formatted amount for consistency with original layout
+            netProfitCurrencyEl.textContent = '฿';
+            netProfitEl.textContent = formatNumber(netProfit);
+
+            document.getElementById('profitPerRai').textContent = formatNumber(profitPerRai);
+            document.getElementById('costPerKg').textContent = formatNumber(costPerKg);
+            document.getElementById('marginPerKg').textContent = formatNumber(marginPerKg);
+            document.getElementById('expectedYield').textContent = formatNumberNoDecimals(expectedYield);
+
+            // Tip Updates
+            const tip1 = document.getElementById('tip1');
+            tip1.innerHTML = `ถ้าต้นทุนต่อ กก. สูงกว่าราคาขาย (ตอนนี้ ${formatNumber(costPerKg)} vs ${formatNumber(pricePerKg)}) จะทำให้ขาดทุน`;
+            document.getElementById('tip3').textContent = `ข้อมูลผลผลิตพันธุ์ ${varietyName} เฉลี่ยทั่วไทยอยู่ที่ ${avgVarietyYield} กก./ไร่`;
+
+            // Visual Logic
+            const profitCard = document.getElementById('profitCard');
+            const statusIcon = document.getElementById('statusIcon');
+            const statusText = document.getElementById('statusText');
+
+            if (netProfit >= 0) {
+                profitCard.className = "bg-green-600 rounded-2xl p-8 text-white text-center shadow-lg transition-colors duration-300";
+                statusIcon.textContent = "✨";
+                statusText.textContent = "ยินดีด้วย คุณได้กำไร!";
+            } else {
+                profitCard.className = "bg-red-600 rounded-2xl p-8 text-white text-center shadow-lg transition-colors duration-300";
+                statusIcon.textContent = "⚠️";
+                statusText.textContent = "ระวัง! คุณกำลังขาดทุน";
+            }
+        }
+
+        function copyResults() {
+            const area = document.getElementById('area').value || '0';
+            const varietyText = document.getElementById('variety').options[document.getElementById('variety').selectedIndex].text;
+            const totalCost = document.getElementById('totalCost').value || '0';
+            const yieldVal = document.getElementById('yield').value || document.getElementById('expectedYield').textContent || '0';
+            const pricePerKg = document.getElementById('pricePerKg').value || '0';
+
+            const netProfit = document.getElementById('netProfit').textContent;
+            const profitPerRai = document.getElementById('profitPerRai').textContent;
+            const costPerKg = document.getElementById('costPerKg').textContent;
+            const marginPerKg = document.getElementById('marginPerKg').textContent;
+
+            const text = [
+                `ผลการคำนวณ โปรแกรมคำนวณต้นทุนรู้ผลกำไร`,
+                `พื้นที่ (ไร่): ${area}`,
+                `พันธุ์: ${varietyText}`,
+                `ต้นทุนรวม (บาท): ${totalCost}`,
+                `ผลผลิต (กก.): ${yieldVal}`,
+                `ราคาขาย (บาท/กก.): ${pricePerKg}`,
+                ``,
+                `ผลลัพธ์:`,
+                `กำไรสุทธิ: ฿${netProfit}`,
+                `กำไร/ไร่: ฿${profitPerRai}`,
+                `ต้นทุน/กก.: ฿${costPerKg}`,
+                `กำไร/กก.: ฿${marginPerKg}`
+            ].join('\n');
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = document.getElementById('copyBtn');
+                    const original = btn.textContent;
+                    btn.textContent = 'คัดลอกแล้ว';
+                    setTimeout(() => btn.textContent = original, 1500);
+                }).catch(() => alert('ไม่สามารถคัดลอกไปยังคลิปบอร์ดได้'));
+            } else {
+                // fallback
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                try {
+                    document.execCommand('copy');
+                    alert('คัดลอกแล้ว');
+                } catch (e) {
+                    alert('ไม่สามารถคัดลอกได้');
+                }
+                document.body.removeChild(ta);
+            }
+        }
+
+        function downloadCSV() {
+            const headers = ['area_rai', 'variety', 'total_cost_baht', 'yield_kg', 'price_baht_per_kg', 'net_profit_baht', 'profit_per_rai_baht', 'cost_per_kg_baht', 'margin_per_kg_baht'];
+            const area = document.getElementById('area').value || '0';
+            const varietyText = document.getElementById('variety').options[document.getElementById('variety').selectedIndex].text;
+            const totalCost = document.getElementById('totalCost').value || '0';
+            const yieldValInput = document.getElementById('yield').value;
+            const expectedYield = document.getElementById('expectedYield').textContent || '0';
+            const yieldVal = (yieldValInput && parseFloat(yieldValInput) > 0) ? yieldValInput : expectedYield;
+            const pricePerKg = document.getElementById('pricePerKg').value || '0';
+
+            const netProfit = document.getElementById('netProfit').textContent.replace(/,/g, '') || '0';
+            const profitPerRai = document.getElementById('profitPerRai').textContent.replace(/,/g, '') || '0';
+            const costPerKg = document.getElementById('costPerKg').textContent.replace(/,/g, '') || '0';
+            const marginPerKg = document.getElementById('marginPerKg').textContent.replace(/,/g, '') || '0';
+
+            const row = [area, `"${varietyText}"`, totalCost, yieldVal, pricePerKg, netProfit, profitPerRai, costPerKg, marginPerKg];
+
+            const csvContent = headers.join(',') + '\n' + row.join(',');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'profit_report.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function resetForm() {
+            document.getElementById('area').value = '0';
+            document.getElementById('variety').selectedIndex = 0;
+            document.getElementById('totalCost').value = '0';
+            document.getElementById('yield').value = '0';
+            document.getElementById('pricePerKg').value = '0';
+            calculate();
+        }
+
+        // Initial Calc
+        window.addEventListener('load', calculate);
+
+        // Recalculate when user focuses out of fields to catch typed pasted values on some mobile browsers
+        ['area', 'variety', 'totalCost', 'yield', 'pricePerKg'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('change', calculate);
+        });
     </script>
 </body>
+
 </html>
